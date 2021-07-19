@@ -1,0 +1,78 @@
+const express = require('express');
+const app = express();
+const ejs = require('ejs');
+const methodOverride = require('method-override');
+const PORT = process.env.PORT || 5000;
+const mongoose = require('mongoose');
+const dotenv = require('dotenv')
+const passport = require('passport');
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+dotenv.config({path: './config/config.env'});
+const connectDB = require('./util/database');
+connectDB();
+
+// passport config
+require('./config/passport')(passport);
+
+// mongostore
+
+//home ROUTES 
+const homeRoute = require('./routes/home');
+//404 no page fond
+const {get404} = require('./controller/404');
+
+
+//bodyparser
+app.use(express.urlencoded({extended: false}));
+app.use(express.json())
+
+// method override
+app.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+      // look in urlencoded POST bodies and delete it
+      let method = req.body._method
+      delete req.body._method
+      return method
+    }
+}))
+
+app.use(express.static(__dirname + '/public'));
+
+//EJS
+const {formatDate,truncate,stripTags,editIcon} = require('./helper/ejs');
+// ejs engine
+// app.engine('ejs', ejs({helper: {formatDate}}))
+app.set('view engine', 'ejs', ({helper: {formatDate,truncate,stripTags,editIcon}}));
+
+// session
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: 'mongodb+srv://roniel:roniel@blog.rdmjs.mongodb.net/mystory?retryWrites=true&w=majority' })
+}))
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//set global variables
+app.use(function (req, res, next) {
+    res.locals.user = req.user || null
+    next();
+})
+
+
+
+//ROUTE
+app.use(homeRoute);
+app.use('/auth', require('./routes/auth'));
+app.use('/stories', require('./routes/stories'));
+//error code
+app.use(get404);
+
+
+app.listen(PORT, console.log(`Server running on port 3000`));

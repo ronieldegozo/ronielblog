@@ -1,0 +1,77 @@
+<!-- header  -->
+<%- include('./includes/head') %>
+<!-- dashboard navbar -->
+<%- include('./includes/dashboardnav') %>
+
+<div class="container">
+  
+  <% if (stories.length > 0) { %>
+    <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+      <strong>Here are list of your story create</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% for (let store of stories) { %>
+        <tr>
+          <td><a href="/stories/<%= store._id %>"></a><%= store.title %></td>
+          <td><%= formatDate(store.createdAt, 'MMMM Do YYYY') %></td>
+          <td><%= store.status %></td>
+          <td> <a href="/stories/edit/<%= store._id %>"><i class="fas fa-edit"></i></a> </td>
+          <td>
+            <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
+<!-- Modal for Delete button-->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Story</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <p>Are you sure do want to delete story?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <form action="/stories/<%= store._id %>" method="POST">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+
+        </tr>
+      </tbody>
+        <% } %>
+    </table>
+
+  <% }else{ %>
+    <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+      <strong>No Story Found!</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% } %>
+  
+</div>
+
+
+<%- include('./includes/footer') %>

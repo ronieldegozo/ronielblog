@@ -1,0 +1,31 @@
+<%- include('../includes/head') %>
+
+<div class="container">
+    <h3>Single Story</h3>
+
+    <div class="row">
+        <div class="col-6">
+              <div class="card">
+                <div class="card-header"><strong><%= story.title %></strong></div>
+                    <p><%= formatDate(story.createdAt, 'MMMM Do YYYY') %></p>
+                <div class="card-body">
+                  <p><%= stripTags(story.body) %></p>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-6">
+              <div class="card">
+                <div class="card-header"><span class="card-title"><%= story.user.displayName %></span></div>
+                <div class="card-body">                                    
+                  <p>  <img src="<%= story.user.image %>" class="responsive-img"  width="230" height="125" style="border-radius: 50%;"></p>
+                </div>
+                <div class="card-footer">
+                    <a href="/stories/user/<%= story.user._id %>">More Story from <%= story.user.firstName %> </a>
+                </div>
+              </div>
+        </div>
+
+    </div>
+</div>
+<%- include('../includes/footer') %>

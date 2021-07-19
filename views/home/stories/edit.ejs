@@ -1,0 +1,38 @@
+<%- include('../includes/head') %>
+
+<%- include('../includes/dashboardnav') %>
+
+<div class="container">
+    <h3>Edit Story</h3>
+    <div class="row">
+        <form action="/stories/<%= story._id %>" method="POST">
+            <!-- METHOD OVERIDE -->
+            <input type="hidden" name="_method" value="PUT">
+
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="<%= story.title %>">
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" class="form-control" name="status">
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <h5>Tell Us Your Story:</h5>
+                <textarea id="body" name="body" class="ckeditor"><%= story.body %></textarea>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success">
+                <a href="/dashboard" class="btn btn-warning">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+<%- include('../includes/footer') %>
