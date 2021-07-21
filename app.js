@@ -71,6 +71,10 @@ app.use(function (req, res, next) {
 app.use(homeRoute);
 app.use('/auth', require('./routes/auth'));
 app.use('/stories', require('./routes/stories'));
+
+// about me
+app.use('/user', require('./routes/me'));
+
 //error code
 app.use(get404);
 
