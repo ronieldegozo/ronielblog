@@ -1,10 +1,14 @@
 const Story = require('../model/Story');
 const {formatDate, truncate,stripTags,editIcon} = require('../helper/ejs');
 //get home page for student
+const Items_Per_Page = 2;
 exports.getHome = async (req, res) =>{
-
+      const page = req.query.page;
     try{
         const stories = await Story.find({status: 'public'})
+  
+            .skip((page - 1) * Items_Per_Page)
+            .limit(Items_Per_Page)
             .populate('user')
             .sort({createdAt: 'desc'})
             .lean()
