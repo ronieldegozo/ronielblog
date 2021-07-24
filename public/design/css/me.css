@@ -2998,6 +2998,29 @@ h6 {
   .copy_right_text p a {
     color: #766dff; }
 
+
+    .project-percent {
+      height: 38px;
+      background-color: #09b8ee;
+      border-radius: 30px;
+      position: relative;
+      width: 0;
+      transition: 2s linear;
+  }
+  .project-percent::before {
+      content: attr(percent);
+      position: absolute;
+      right: 0px;
+      left: 0px;
+      padding: 5px;
+      color: #ffffff;
+      font-size: 10px;
+      border-radius: 25px;
+      font-weight: bold;
+      width: 20px;
+      margin: 0px auto;
+  }
+
 /* End Footer Area css
 ============================================================================================ */
 /*---------------------------------------------------- */

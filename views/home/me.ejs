@@ -1,5 +1,7 @@
 <%- include('./includes/head') %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/design/css/me.css">
+
             <!--================Home Banner Area =================-->
             <section class="home_banner_area">
                 <div class="container box_1620">
@@ -22,9 +24,9 @@
                                          <li><a href="#"><i class="bx bx-map"></i> San Mateo Rizal </a></li>
                                      </ul>
                                      <ul class="list personal_social">
-                                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                         <li><a href="https://www.facebook.com/ronieldegozo04/"><i class="fa fa-facebook"></i></a></li>
+                                         <li><a href="https://www.youtube.com/channel/UCSOmpjTnITaChi6TADfx3-Q"><i class="fa fa-youtube"></i></a></li>
+                                         <li><a href="https://www.linkedin.com/in/mc-roniel-de-gozo-6466711b8"><i class="fa fa-linkedin"></i></a></li>
                                      </ul>
                                  </div>
                              </div>
@@ -33,5 +35,109 @@
                  </div>
              </div>
          </section>
+
+         <section class="welcome_area p_120">
+        	<div class="container">
+        		<div class="row welcome_inner">
+        			<div class="col-lg-6">
+        				<div class="welcome_text">
+        					<h4>About Myself</h4>
+        					<p>I am a Junior NodeJS Developer with good knowledge of front-end techniques using Bootstrap and CSS.I love spending my time on fixing little details and optimizing web application using NodeJS Frameworks. also I like working in a team, you'll learn faster and much more.</p>
+        					<div class="row">
+        						<div class="col-md-4">
+        							<div class="wel_item">
+        								<i class="fa fa-github"></i>
+        								<h4>Github</h4>
+        							</div>
+        						</div>
+        						<div class="col-md-4">
+        							<div class="wel_item">
+										<i class="fa fa-youtube"></i>
+        								<h4>Github</h4>
+        							</div>
+        						</div>
+        						<div class="col-md-4">
+        							<div class="wel_item">
+										<i class="fa fa-facebook"></i>
+        								<h4>Facebook</h4>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-6">
+        				<div class="tools_expert">
+        					<div class="skill_main">
+								<div class="skill_item">
+									<h4>NodeJS <span class="counter">75</span>%</h4>
+									<div class="project-bar">
+										<div class="progress">
+											     <div class="project-percent" percent="75"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill_item">
+									<h4>PHP <span class="counter">80</span>%</h4>
+									<div class="project-bar">
+										<div class="progress">
+											     <div class="project-percent" percent="80"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill_item">
+									<h4>Bootstrap <span class="counter">85</span>%</h4>
+									<div class="project-bar">
+										<div class="progress">
+											     <div class="project-percent" percent="95"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill_item">
+									<h4>Git and Github <span class="counter">90</span>%</h4>
+									<div class="project-bar">
+										<div class="progress">
+											<div class="project-percent" percent="90"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill_item">
+									<h4>MySql <span class="counter">75</span>%</h4>
+									<div class="project-bar">
+										<div class="progress">
+											     <div class="project-percent" percent="75"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill_item">
+									<h4>NoSql <span class="counter">45</span>%</h4>
+									<div class="project-bar">
+										<div class="progress">
+											     <div class="project-percent" percent="45"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+
+        <script>
+            $('.project-percent').each(function(){
+                var $this = $(this);
+                var percent = $this.attr('percent');
+                $this.css("width",percent+'%');
+                $({animatedValue: 0}).animate({animatedValue: percent},{
+                    duration: 2000,
+                    step: function(){
+                        $this.attr('percent', Math.floor(this.animatedValue) + '%');
+                    },
+                    complete: function(){
+                        $this.attr('percent', Math.floor(this.animatedValue) + '%');
+                    }
+                });
+            });
+            </script>
 
 <%- include('./includes/footer') %>
