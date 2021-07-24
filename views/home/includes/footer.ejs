@@ -1,4 +1,21 @@
-      <!-- Vendor JS Files -->
+    
+<script>
+$('.project-percent').each(function(){
+      var $this = $(this);
+      var percent = $this.attr('percent');
+      $this.css("width",percent+'%');
+      $({animatedValue: 0}).animate({animatedValue: percent},{
+            duration: 2000,
+            step: function(){
+            $this.attr('percent', Math.floor(this.animatedValue) + '%');
+            },
+            complete: function(){
+            $this.attr('percent', Math.floor(this.animatedValue) + '%');
+            }
+      });
+});
+ </script>
+    <!-- Vendor JS Files -->
       <script src="/design/vendor/jquery/jquery.min.js"></script>
       <script src="/design/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
       <script src="/design/vendor/jquery.easing/jquery.easing.min.js"></script>
