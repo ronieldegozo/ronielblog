@@ -220,4 +220,10 @@
         	</div>
         </section>
 
+		<ul> 
+			<% articles.forEach(function(article, index) { %>
+				<li><%= article.title %> %></li>
+			<% }) %>
+		</ul>
+		
 <%- include('./includes/footer') %>

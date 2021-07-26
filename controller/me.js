@@ -1,34 +1,12 @@
-const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('98e5e4e958fa47eb97c242794e4165d8');
-
-
+const axios = require('axios');
 exports.getMe = async (req, res) =>{
-
-    // newsapi.v2.topHeadlines({
-    //     language: 'en',
-    //     country: 'ph',
-    // })
-    // .then(response => {
-    //     console.log(response);
-    // });
-      
-
     try{
-        newsapi.v2.topHeadlines({
-            language: 'en',
-            country: 'ph',
+        const news = await axios.get('https://newsapi.org/v2/top-headlines?country=ph&apiKey=8fbd96e6bb6e4badb1f2dd8e85fa9be0')
+        res.render('home/me',{ 
+            pageTitle: 'Roniel', 
+            articles: news.data.articles
         })
-        .then((response) => {
-            res.render('home/me',{
-                pageTitle: 'Roniel',
-                response
-            })
-
-            console.log(response)
-        })
-
-
-   
+        // console.log(news.data);
     }catch(err){
         console.log(err);
         res.render('404', {
