@@ -6,7 +6,7 @@ exports.getMe = async (req, res) =>{
             pageTitle: 'Roniel', 
             articles: news.data.articles
         })
-        // console.log(news.data);
+        console.log(news.data.articles);
     }catch(err){
         console.log(err);
         res.render('404', {

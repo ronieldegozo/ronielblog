@@ -1,7 +1,6 @@
 <%- include('./includes/head') %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/design/css/me.css">
-
             <!--================Home Banner Area =================-->
             <section class="home_banner_area">
                 <div class="container box_1620">
@@ -220,10 +219,32 @@
         	</div>
         </section>
 
-		<ul> 
 			<% articles.forEach(function(article, index) { %>
-				<li><%= article.title %> %></li>
+				<div class='container'>
+					<main>
+					  <div class='normal'>
+						<div class='module d-flex'>
+						  <div class='thumbnail'>
+							<img src="<%= article.urlToImage %>">
+							<div class='date'>
+							  <div><%= article.publishedAt %></div>
+							</div>
+						  </div>
+						  <div class='content'>
+							<div class="category">Category</div>
+							<h1 class='title'><%= article.title %></h1>
+							<h2 class='sub-title'><%= article.author %></h2>
+							<div class="description"><%= article.content %></div>
+							<div class="meta">
+							  <span class="comments">
+									<a href="<%= article.url %>" class="btn btn-success">Read More</a>
+							  </span>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</main>
+				  </div>
 			<% }) %>
-		</ul>
-		
+	
 <%- include('./includes/footer') %>
