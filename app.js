@@ -72,6 +72,8 @@ app.use(homeRoute);
 app.use('/auth', require('./routes/auth'));
 app.use('/stories', require('./routes/stories'));
 
+// news
+app.use('/new', require('./routes/news'));
 // about me
 app.use('/user', require('./routes/me'));
 
