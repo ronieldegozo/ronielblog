@@ -7,6 +7,7 @@
     <div class="row">
         <form action="/stories/<%= story._id %>" method="POST">
             <!-- METHOD OVERIDE -->
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <input type="hidden" name="_method" value="PUT">
 
             <div class="form-group">

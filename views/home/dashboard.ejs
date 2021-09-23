@@ -30,7 +30,12 @@
           <td><a href="/stories/<%= store._id %>"></a><%= store.title %></td>
           <td><%= formatDate(store.createdAt, 'MMMM Do YYYY') %></td>
           <td><%= store.status %></td>
-          <td> <a href="/stories/edit/<%= store._id %>"><i class="fas fa-edit"></i></a> </td>
+          <td> 
+            <form action="/stories/edit/<%= store._id %>" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <a href="/stories/edit/<%= store._id %>"><i class="fas fa-edit"></i></a> 
+            </form>
+          </td>
           <td>
             <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
 <!-- Modal for Delete button-->
@@ -48,6 +53,7 @@
                   </div>
                   <div class="modal-footer">
                     <form action="/stories/<%= store._id %>" method="POST">
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                       <input type="hidden" name="_method" value="DELETE">
                       <button type="submit" class="btn btn-danger">Delete</button>
                     </form>

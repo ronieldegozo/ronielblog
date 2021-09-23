@@ -35,9 +35,12 @@
         </div>
         <div class="modal-body">
             <div class="section text-center" >
+              <form action="/auth/google" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <a href="/auth/google" class="btn btn-danger">
                   <i class="fab fa-google-plus-square"></i> Login with Google
                 </a>
+              </form>
             </div>
         </div>
       </div>

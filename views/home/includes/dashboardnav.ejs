@@ -36,7 +36,10 @@
           </div>
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
+            <form action="" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <a class="btn btn-primary" href="/auth/logout" class="logout">Logout</a>
+            </form>
           </div>
       </div>
   </div>

@@ -93,7 +93,12 @@ h1.heading {
         <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1>Bettter Blog Experience With RougeNiel</h1>
           <h2>We are team of talented in building a Dynamic BlogSite</h2>
-          <div><a href="#about" class="btn-get-started scrollto">Get Started</a></div>
+          <div>
+            <form action="#about">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            </form>
+          </div>
         </div>
         <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
           <img src="/design/img/front.svg" class="img-fluid animated" alt="">
@@ -147,10 +152,12 @@ h1.heading {
                                 </div>
                               </div>
 
-
+                              <form>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                 <a href="/stories/<%= store._id %>" class="btn btn-link btn-block  d-flex flex-row-reverse ">
-                                    Read More
-                                </a>
+                                  Read More
+                              </a>
+                              </form>
                             </div>
                         </div>
                     </div>

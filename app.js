@@ -7,15 +7,17 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv')
 const passport = require('passport');
 
+
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-
+const csrf = require('csurf');
 dotenv.config({path: './config/config.env'});
 const connectDB = require('./util/database');
 connectDB();
 
 // passport config
 require('./config/passport')(passport);
+
 
 // mongostore
 
@@ -45,6 +47,7 @@ app.use(express.static(__dirname + '/public'));
 const {formatDate,truncate,stripTags,editIcon} = require('./helper/ejs');
 // ejs engine
 // app.engine('ejs', ejs({helper: {formatDate}}))
+const csrfProtection = csrf();
 app.set('view engine', 'ejs', ({helper: {formatDate,truncate,stripTags,editIcon}}));
 
 // session
@@ -56,12 +59,15 @@ app.use(session({
 }))
 
 //passport middleware
+app.use(csrfProtection);
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 //set global variables
 app.use(function (req, res, next) {
-    res.locals.user = req.user || null
+    res.locals.user = req.user || null;
+    res.locals.csrfToken = req.csrfToken();
     next();
 })
 

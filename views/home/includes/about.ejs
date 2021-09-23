@@ -16,7 +16,11 @@
             <li><i class="icofont-check-circled"></i> Server Side Developer </li>
             <li><i class="icofont-check-circled"></i> Managing User Interface </li>
           </ul>
-          <a href="/user/me" class="read-more">Read More <i class="icofont-long-arrow-right"></i></a>
+          <form>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <a href="/user/me" class="read-more">Read More <i class="icofont-long-arrow-right"></i></a>
+          </form>
+
         </div>
       </div>
 

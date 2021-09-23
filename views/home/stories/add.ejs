@@ -6,6 +6,7 @@
     <h3>Add Story</h3>
     <div class="row">
         <form action="/stories" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="form-group">
                 <label for="Title">Title</label>
                 <input type="text" class="form-control" id="title" name="title">
