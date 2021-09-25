@@ -20,7 +20,8 @@ exports.getHome = async (req, res) =>{
             formatDate,
             truncate,
             stripTags,
-            editIcon
+            editIcon,
+            errorMsg: false
         });
             
     }catch(err){

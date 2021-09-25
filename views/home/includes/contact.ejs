@@ -41,7 +41,17 @@
           </div>                              
 
           <div class="col-lg-6">
-            <form action="/email" method="POST">
+
+          <% if(errorMsg) { %>
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                      <p> <%= errorMsg %></p>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          <% } %>
+
+            <form action="/email" method="POST" novalidate>
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <div class="form-row">
                 <div class="col-md-6 form-group">
