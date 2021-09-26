@@ -26,7 +26,7 @@ exports.postEmail = async (req, res) => {
     .lean()
 
     if(!errors.isEmpty()) { //validation response empty
-        console.log(errors.array()[0].msg);
+        console.log(errors.array());
 
         return res.status(422)
         .render('home/home',{
