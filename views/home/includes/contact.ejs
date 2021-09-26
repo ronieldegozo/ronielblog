@@ -1,4 +1,9 @@
     <!-- ======= Contact Section ======= -->
+    <style>
+      .invalid{
+        border-color:  red;
+      }
+    </style>
     <section id="contact" class="contact section-bg">
       <div class="container" data-aos="fade-up">
 
@@ -55,20 +60,28 @@
               <input type="hidden" name="_csrf" value="<%= csrfToken %>">
               <div class="form-row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name"required  placeholder="Your Name" data-rule="minlen:4"/>
+                  <input type="text" name="name" 
+                  class="<%= validationErrors.find(e => e.param === 'name') ? 'invalid' : '' %> form-control"
+                  id="name"required  
+                  placeholder="Your Name" />
                 </div>
                 <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" required placeholder="Your Email" data-rule="email"/>
+                  <input type="email"
+                   class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %> form-control"
+                   name="email" id="email" required placeholder="Your Email"  value="<%= userInput.email %>"/>
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" required placeholder="Subject" />
+                <input type="text" class="<%= validationErrors.find(e => e.param === 'subject') ? 'invalid' : '' %> form-control"
+                name="subject" id="subject" required placeholder="Subject" value="<%= userInput.subject %>" />
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" name="phone" id="phone" required placeholder="Contact Number" />
+                <input type="number" class="<%= validationErrors.find(e => e.param === 'phone') ? 'invalid' : '' %> form-control"
+                name="phone" id="phone" required placeholder="Contact Number" value="<%= userInput.phone %>" />
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" required  placeholder="Concern"></textarea>
+                <textarea     class="<%= validationErrors.find(e => e.param === 'message') ? 'invalid' : '' %> form-control"
+                name="message" rows="5" data-rule="required" required  placeholder="Concern" value="<%= userInput.message %>"></textarea>
               </div>
               <div class="text-center"><button type="submit" class="btn btn-success">Send Message</button></div>
             </form>

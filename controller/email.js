@@ -39,7 +39,15 @@ exports.postEmail = async (req, res) => {
             editIcon,
             path: '/',
             errorMsg: errors.array()[0].msg,
-            stories
+            stories,
+            userInput:{
+              name: req.body.name,
+              email: req.body.email,
+              subject: req.body.subject,
+              phone: req.body.phone,
+              message: req.body.message,
+            },
+            validationErrors: errors.array()
         });
     }
 

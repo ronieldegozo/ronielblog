@@ -21,7 +21,15 @@ exports.getHome = async (req, res) =>{
             truncate,
             stripTags,
             editIcon,
-            errorMsg: false
+            errorMsg: false,
+            userInput: { //speciific old error
+                name: '',
+                email: '',
+                subject: '',
+                phone: '',
+                message: '',
+            },
+            validationErrors: [] //arrayt o f errors
         });
             
     }catch(err){
