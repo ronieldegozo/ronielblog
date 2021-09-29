@@ -1,5 +1,14 @@
 const Story = require('../model/Story');
 const {formatDate, truncate,stripTags,editIcon} = require('../helper/ejs');
+
+
+exports.getStory = async (req, res) => {
+    res.render('home/stories/index',{
+        pageTitle : 'Blogs',
+        path: '/stories/add'
+    })
+}
+
 //get home page for add getStories 
 exports.getStories = async (req, res) =>{
     try {

@@ -23,6 +23,7 @@ require('./config/passport')(passport);
 
 //home ROUTES 
 const homeRoute = require('./routes/home');
+const storyRoute = require('./routes/user-story');
 //404 no page fond
 const {get404} = require('./controller/404');
 
@@ -83,6 +84,7 @@ app.use('/new', require('./routes/news'));
 // about me
 app.use('/user', require('./routes/me'));
 
+app.use('/user',storyRoute );
 //error code
 app.use(get404);
 
