@@ -9,13 +9,12 @@
 
           <nav class="nav-menu d-none d-lg-block">
             <ul>
-              <li class="active"><a href="/">Home</a></li>
+              <li><a class="<%= path === '/' ? 'actives' : '' %>" href="/">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#services">Services</a></li>
               <li><a href="#contact">Contact</a></li>
-              <li><a href="/new/news">News</a></li>
+              <li><a class="<%= path === '/news' ? 'actives' : '' %>" href="/new/news">News</a></li>
               <li><a href="/user/story">Story</a></li>
-
             </ul>
           </nav><!-- .nav-menu -->
           <a href="#about" class="get-started-btn" data-toggle="modal" data-target="#loginStudent">Login</a>

@@ -21,6 +21,7 @@ exports.getHome = async (req, res) =>{
             truncate,
             stripTags,
             editIcon,
+            path: '/',
             errorMsg: false,
             userInput: { //speciific old error
                 name: '',

@@ -1,123 +1,30 @@
 <%- include('./includes/head') %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link rel="stylesheet" href="/news_design/style.css">
+
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container-fluid">
+    <%- include('./includes/navbar') %>
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container-fluid" data-aos="fade-up">
       <div class="row justify-content-center">
-        <div class="col-xl-9 d-flex align-items-center">
-          <h1 class="logo mr-auto"><a href="/">RougeNiel</a></h1>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-          <nav class="nav-menu d-none d-lg-block">
-            <ul>
-              <li><a href="/">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="active"><a href="#/new/news">News</a></li>
-
-            </ul>
-          </nav><!-- .nav-menu -->
-          <a href="#about" class="get-started-btn" data-toggle="modal" data-target="#loginStudent">Login</a>
+        <div class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <img src="/design/img/news.svg" class="img-fluid animated" alt="">
+        </div>
+        <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
+          <h1 class="text-center">NEWS API ORGANIZATION</h1>
+          <h2>News API is a simple, easy-to-use REST API that returns JSON search results for current and historic news articles published by over 80,000 worldwide sources.</h2>
         </div>
       </div>
     </div>
-  </header>
+  </section><!-- End Hero -->
+
 
 <div class="container-scroller">
   <div class="main-panel">
 
     <div class="content-wrapper">
       <div class="container">
+
         <div class="row" data-aos="fade-up">
-          <div class="col-xl-8 stretch-card grid-margin">
-            <div class="position-relative">
-              <img
-                src="/news_design/images/dashboard/banner.jpg"
-                alt="banner"
-                class="img-fluid"
-              />
-              <div class="banner-content">
-                <div class="badge badge-danger fs-12 font-weight-bold mb-3">
-                  global news
-                </div>
-                <h1 class="mb-0">GLOBAL PANDEMIC</h1>
-                <h1 class="mb-2">
-                  Coronavirus Outbreak LIVE Updates: ICSE, CBSE Exams
-                  Postponed, 168 Trains
-                </h1>
-                <div class="fs-12">
-                  <span class="mr-2">Photo </span>10 Minutes ago
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 stretch-card grid-margin">
-            <div class="card bg-dark text-white">
-              <div class="card-body">
-                <h2>Latest news</h2>
-
-                <div
-                  class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between"
-                >
-                  <div class="pr-3">
-                    <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                    <div class="fs-12">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </div>
-                  </div>
-                  <div class="rotate-img">
-                    <img
-                      src="/news_design/images/dashboard/home_1.jpg"
-                      alt="thumb"
-                      class="img-fluid img-lg"
-                    />
-                  </div>
-                </div>
-
-                <div
-                  class="d-flex border-bottom-blue pb-4 pt-4 align-items-center justify-content-between"
-                >
-                  <div class="pr-3">
-                    <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                    <div class="fs-12">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </div>
-                  </div>
-                  <div class="rotate-img">
-                    <img
-                      src="/news_design/images/dashboard/home_2.jpg"
-                      alt="thumb"
-                      class="img-fluid img-lg"
-                    />
-                  </div>
-                </div>
-
-                <div
-                  class="d-flex pt-4 align-items-center justify-content-between"
-                >
-                  <div class="pr-3">
-                    <h5>Virus Kills Member Of Advising Iran’s Supreme</h5>
-                    <div class="fs-12">
-                      <span class="mr-2">Photo </span>10 Minutes ago
-                    </div>
-                  </div>
-                  <div class="rotate-img">
-                    <img
-                      src="/news_design/images/dashboard/home_3.jpg"
-                      alt="thumb"
-                      class="img-fluid img-lg"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-3 stretch-card grid-margin">
+          <!-- <div class="col-lg-3 stretch-card grid-margin">
             <div class="card">
               <div class="card-body">
                 <h2>Category</h2>
@@ -137,9 +44,7 @@
                 </ul>
               </div>
             </div>
-          </div>
-
-
+          </div> -->
           <!-- news -->
           
           <div class="col-lg-9 stretch-card grid-margin">
