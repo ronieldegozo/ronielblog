@@ -15,18 +15,18 @@ router.post('/email',
     .withMessage('Please Enter your valid Email address'), 
     
     body('phone', 'Phone Number 11 Maximum number only')  //check validation for phone number 
-    .isLength({min: 6, max: 11})
+    .isLength({max: 11})
     .isAlphanumeric(),
 
     // body('message', 'Concern must is Alphanumeric') //concern validation
     // .isAlphanumeric(),
 
     body('subject', 'Subject atleast 5 character long') //concern validation
-    .isLength({min: 5, max: 10})
+    .isLength({max: 10})
     .isAlphanumeric(),
 
     body('name', 'Short name or Nickname must 5 character long') //concern validation
-    .isLength({min: 5, max: 10})
+    .isLength({max: 10})
     .isAlphanumeric(),
 
     postEmail); 

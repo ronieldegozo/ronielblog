@@ -25,7 +25,9 @@ require('./config/passport')(passport);
 const homeRoute = require('./routes/home');
 const storyRoute = require('./routes/user-story');
 //404 no page fond
-const {get404} = require('./controller/404');
+// const {get404} = require('./controller/404');
+const errorController = require('./controller/error');
+
 
 
 //bodyparser
@@ -85,8 +87,15 @@ app.use('/new', require('./routes/news'));
 app.use('/user', require('./routes/me'));
 
 app.use('/user',storyRoute );
-//error code
-app.use(get404);
+
+app.use('/500', errorController.get500);
+//error code 404
+app.use(errorController.get404);
+//SYSTEM PROBLEM ERROR
+app.use((error, req, res, next) => { //ERROR MIDDLEWARE
+    res.redirect('/500'); //throwing a 500 page error
+  });
+  
 
 
 app.listen(PORT, console.log(`Server running on port 3000`));

@@ -20,10 +20,13 @@ exports.getStories = async (req, res) =>{
               path: '/stories/add'
           })
       }catch (err) {
-          console.log(err);
-          res.render('404', {
-              pageTitle: 'Page not Found'
-          });
+        console.log(err);
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+        //   res.render('404', {
+        //       pageTitle: 'Page not Found'
+        //   });
       }
 }
 
@@ -36,9 +39,12 @@ exports.postStories = async (req, res) => {
         res.redirect('/dashboard');
     }catch(err) {
         console.log(err);
-        res.render('404', {
-            pageTitle: 'Page not Found'
-        });
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+        // res.render('404', {
+        //     pageTitle: 'Page not Found'
+        // });
     }
 }
 
@@ -68,13 +74,14 @@ exports.getSingleStory = async (req, res) => {
 
     }catch(err) {
         console.log(err);
-        res.render('404', {
-            pageTitle: 'Page not Found'
-        });
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+        // res.render('404', {
+        //     pageTitle: 'Page not Found'
+        // });
     }
-
 }
-
 
 
 // get all user story
@@ -101,9 +108,12 @@ exports.getAllUserStory = async (req, res) => {
 
       }catch(err) {
         console.log(err);
-        res.render('404', {
-            pageTitle: 'Page not Found'
-        });
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+        // res.render('404', {
+        //     pageTitle: 'Page not Found'
+        // });
     }
 }
 
@@ -171,9 +181,12 @@ exports.deletePost = async (req, res) => {
         res.redirect('/dashboard');
     }catch(err) {
         console.log(err);
-        res.render('404', {
-            pageTitle: 'Page not Found'
-        });
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+        // res.render('404', {
+        //     pageTitle: 'Page not Found'
+        // });
     }
 
 

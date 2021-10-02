@@ -27,7 +27,6 @@ exports.postEmail = async (req, res) => {
 
     if(!errors.isEmpty()) { //validation response empty
         console.log(errors.array());
-
         return res.status(422)
         .render('home/home',{
             pageTitle: 'Blogs',
@@ -70,7 +69,6 @@ exports.postEmail = async (req, res) => {
       <h3>Message</h3>
       <p>${req.body.message}</p>
     `;
-
     transporter.sendMail({
       to: `${req.body.email}`,
       from: 'lauritosamber@gmail.com',
@@ -81,11 +79,16 @@ exports.postEmail = async (req, res) => {
     
   }catch(err){
     console.log(err);
-    res.render('404', {
-        pageTitle: 'Page not Found'
-    });
+    const error = new Error(err); //throwing a 500 page error
+    error.httpStatusCode = 500;
+    return next(error);
+    // console.log(err);
+    // res.render('404', {
+    //     pageTitle: 'Page not Found'
+    // });
   }
 
+  
 
 };
 

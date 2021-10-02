@@ -9,9 +9,12 @@ exports.getMe = async (req, res) =>{
         // console.log(news.data.articles);
     }catch(err){
         console.log(err);
-        res.render('404', {
-            pageTitle: 'Page not Found'
-        });
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+        // res.render('404', {
+        //     pageTitle: 'Page not Found'
+        // });
     }
 
 }
