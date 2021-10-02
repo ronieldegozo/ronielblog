@@ -9,7 +9,10 @@ const connectDB = async () =>{
     })
     console.log(`Mongo DB connect on PORT ${conn.connection.host}`);
   }catch (e){
-    console.log(e);
+    console.log(err);
+    const error = new Error(err); //throwing a 500 page error
+    error.httpStatusCode = 500;
+    return next(error);
     process.exit(1);
   }
 }
