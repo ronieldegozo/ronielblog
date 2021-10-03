@@ -3,9 +3,50 @@
 <%- include('../includes/dashboardnav') %>
 
 <div class="container">
-    <h3>Add Story</h3>
+    <h3>Add Storys</h3>
     <div class="row">
-        <form action="/stories" method="POST">
+
+        <form action="/stories" method="POST" enctype="multipart/form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                class="form-control" name="title" id="title" >
+            </div>
+            <div class="form-group">
+                <label for="title">Status</label>
+                <select id="status" class="form-control" name="status">
+                    <option value="public" selected>Public</option>
+                    <option value="private">Private</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Categories</label>
+                <select id="categories" class="form-control" name="categories">
+                    <option value="sports" selected>Sports</option>
+                    <option value="news">News</option>
+                    <option value="games" selected>Games</option>
+                    <option value="politics">Politics</option>
+                    <option value="entertaiment" selected>Entertaiment</option>
+                    <option value="facts">FACTS</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="title">Upload Image</label>
+                <input type="text"
+                class="form-control" name="image" id="image" >
+            </div>
+            <div class="form-group">
+                <label for="title">Story about</label>
+                <textarea id="body" name="body" class="ckeditor form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success">
+                <a href="/dashboard" class="btn btn-warning">Cancel</a>
+            </div>
+        </form>
+
+        <!-- <form action="/stories" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="form-group">
                 <label for="Title">Title</label>
@@ -29,8 +70,8 @@
                 <input type="submit" value="Save" class="btn btn-success">
                 <a href="/dashboard" class="btn btn-warning">Cancel</a>
             </div>
-        </form>
-    </div>
+        </form> -->
 
+    </div>
 </div>
 <%- include('../includes/footer') %>

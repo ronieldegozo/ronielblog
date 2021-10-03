@@ -6,14 +6,23 @@ const StorySchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  body: {
-    type: String,
-    required: true,
-  },
   status: {
     type: String,
     default: 'public',
     enum: ['public', 'private'],
+  },
+  categories: {
+    type: String,
+    default: 'sports',
+    enum: ['sports', 'news', 'games','politics', 'entertaiment', 'facts'],
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  body: {
+    type: String,
+    required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

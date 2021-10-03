@@ -32,20 +32,48 @@ exports.getStories = async (req, res) =>{
 
 // create new stories
 exports.postStories = async (req, res) => {
+    console.log("This is story");
+
+    const title = req.body.title;
+    const status = req.body.status;
+    const categories = req.body.categories;
+    const image = req.body.image;
+    const body = req.body.body;
+    const user = req.body.user = req.user.id;
 
     try{
-        req.body.user = req.user.id
-        await Story.create(req.body)
-        res.redirect('/dashboard');
-    }catch(err) {
+        const story = new Story({
+            title: title,
+            status: status,
+            categories: categories,
+            image: image,
+            body: body,
+            user: user,
+        });
+        story.save()
+        .then((result) => {
+            console.log(result + 'Created');
+            res.redirect('/dashboard');
+        })
+
+    }catch(err){
         console.log(err);
-        const error = new Error(err); //throwing a 500 page error
-        error.httpStatusCode = 500;
-        return next(error);
-        // res.render('404', {
-        //     pageTitle: 'Page not Found'
-        // });
     }
+
+
+    // try{
+    //     req.body.user = req.user.id
+    //     await Story.create(req.body)
+    //     res.redirect('/dashboard');
+    // }catch(err) {
+    //     console.log(err);
+    //     const error = new Error(err); //throwing a 500 page error
+    //     error.httpStatusCode = 500;
+    //     return next(error);
+    //     // res.render('404', {
+    //     //     pageTitle: 'Page not Found'
+    //     // });
+    // }
 }
 
 

@@ -19,5 +19,8 @@ GOOGLE_CLIENT_SECRET = 9sEuN7Zdb9ec5C9MNGqD7YmJ
 
 
 API KEY LOCAL
-CLIENT ID = 178148043024-l6dcag5k8bhachiusronk23pc5o1n192.apps.googleusercontent.com
-CLIENT SECRET ID = 4sCGhJIA-DfB9O9jHu2I5-Wc
+GOOGLE_CLIENT_ID = 178148043024-l6dcag5k8bhachiusronk23pc5o1n192.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET = 4sCGhJIA-DfB9O9jHu2I5-Wc
+
+
+
