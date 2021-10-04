@@ -6,7 +6,8 @@ const PORT = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const dotenv = require('dotenv')
 const passport = require('passport');
-
+const bodyParser = require('body-parser');
+const multer = require('multer');
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -31,7 +32,8 @@ const errorController = require('./controller/error');
 
 
 //bodyparser
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(multer().single('image'));
 app.use(express.json())
 
 // method override

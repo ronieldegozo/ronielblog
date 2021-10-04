@@ -37,28 +37,29 @@ exports.postStories = async (req, res) => {
     const title = req.body.title;
     const status = req.body.status;
     const categories = req.body.categories;
-    const image = req.body.image;
+    const image = req.file;
     const body = req.body.body;
     const user = req.body.user = req.user.id;
+    console.log(image)
+    console.log(body);
+    // try{
+    //     const story = new Story({
+    //         title: title,
+    //         status: status,
+    //         categories: categories,
+    //         image: image,
+    //         body: body,
+    //         user: user,
+    //     });
+    //     story.save()
+    //     .then((result) => {
+    //         console.log(result + 'Created');
+    //         res.redirect('/dashboard');
+    //     })
 
-    try{
-        const story = new Story({
-            title: title,
-            status: status,
-            categories: categories,
-            image: image,
-            body: body,
-            user: user,
-        });
-        story.save()
-        .then((result) => {
-            console.log(result + 'Created');
-            res.redirect('/dashboard');
-        })
-
-    }catch(err){
-        console.log(err);
-    }
+    // }catch(err){
+    //     console.log(err);
+    // }
 
 
     // try{
