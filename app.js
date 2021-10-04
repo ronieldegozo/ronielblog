@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const ejs = require('ejs');
@@ -70,7 +71,9 @@ app.use(methodOverride(function (req, res) {
     }
 }))
 
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images'))); //IMAGES PATH
 
 //EJS
 const {formatDate,truncate,stripTags,editIcon} = require('./helper/ejs');
