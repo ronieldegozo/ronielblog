@@ -38,6 +38,7 @@
     "passport-google-oauth2": "^0.2.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
+    "pdfkit": "^0.12.3",
     "sequelize": "^6.6.2",
     "serve-favicon": "^2.5.0"
   },

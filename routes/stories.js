@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {ensureAuth} = require('../middleware/auth');
-const {getStories,postStories,getSingleStory,getAllUserStory,getEditPost,updatePost,deletePost} = require('../controller/stories');
+const {getStories,postStories,getSingleStory,getAllUserStory,getEditPost,updatePost,deletePost, getInvoice} = require('../controller/stories');
 
 //get add page stories
 router.get('/add',ensureAuth, getStories);
@@ -23,5 +23,8 @@ router.put('/:id',ensureAuth, updatePost);
 
 //Delete STORIES
 router.delete('/:id',ensureAuth, deletePost);
+
+//invoices
+router.get('/stories/:storiesId',ensureAuth, getInvoice);
 
 module.exports = router;

@@ -1,5 +1,8 @@
 const Story = require('../model/Story');
 const {formatDate, truncate,stripTags,editIcon} = require('../helper/ejs');
+const fs = require('fs');
+const path = require('path');
+const PDFkit = require('pdfkit')
 
 
 exports.getStory = async (req, res) => {
@@ -223,7 +226,21 @@ exports.deletePost = async (req, res) => {
         //     pageTitle: 'Page not Found'
         // });
     }
-
-
-
 }
+
+
+exports.getInvoice = (req, res, next) =>{
+    console.log('getInvoice');
+    const storyId = req.params.storiesId;
+
+    const invoiceName = 'invoice-' + storyId + '.pdf';
+    const invoicePath = path.join('invoice', invoiceName)
+    const pdfDoc = new PDFkit();
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename="' + invoiceName + '"');
+    pdfDoc.pipe(fs.createWriteStream(invoicePath));
+    pdfDoc.pipe(res);
+    pdfDoc.text('Hello Roniel THIS IS YOUR PDF BLOG SITE');
+    pdfDoc.end();
+  
+};
