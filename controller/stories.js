@@ -148,58 +148,57 @@ exports.getAllUserStory = async (req, res) => {
     }
 }
 
-
-
-
 // edit post
-exports.getEditPost = async (req, res) =>{
-    const story = await Story.findOne({
-        _id: req.params.id
-    }).lean()
-
-
-    if (!story){
-        return  res.render('404', {
-            pageTitle: 'Page not Found'
-        });
-    }
-
-        // check is the user is the login user
-    if (story.user != req.user.id) {
-        res.redirect('/')
-    }else{
+exports.getEditPost = async (req, res) => {
+    const storyId = req.params.id;
+    try{
+        const story = await Story.findById(storyId)
+        if(!story){
+            return res.redirect('/'); 
+        }
         res.render('home/stories/edit', {
             pageTitle: 'Edit',
             story,
             path: '/stories/edit',
             user: req.user
         })
+
+    }catch(e){
+        console.log(e);
     }
-
 }
-
-
 
 // update post
 exports.updatePost = async (req, res) => {
-    let story = await Story.findById(req.params.id).lean()
+    const storyId = req.body.storyId;
+    const updatedtitle = req.body.title;
+    const updatedstatus = req.body.status;
+    const updatedcategories = req.body.categories;
+    // const updatedImg = req.file;
+    const updatedbody = req.body.body;
+    
+    console.log(storyId, updatedtitle,updatedstatus, updatedcategories,updatedbody);
 
-    if(!story) {
-        return  res.render('404', {
-            pageTitle: 'Page not Found'
-        });
-    }
 
-    // check is the user is the login user
-    if (story.user != req.user.id) {
-        res.redirect('/')
-    }else{
-        story = await Story.findOneAndUpdate({_id: req.params.id}, req.body, {
-            new: true,
-            runValidators: true
-        })
-        res.redirect('/dashboard');
-    }
+
+    // let story = await Story.findById(req.params.id).lean()
+
+    // if(!story) {
+    //     return  res.render('404', {
+    //         pageTitle: 'Page not Found'
+    //     });
+    // }
+
+    // // check is the user is the login user
+    // if (story.user != req.user.id) {
+    //     res.redirect('/')
+    // }else{
+    //     story = await Story.findOneAndUpdate({_id: req.params.id}, req.body, {
+    //         new: true,
+    //         runValidators: true
+    //     })
+    //     res.redirect('/dashboard');
+    // }
 
 }
 
