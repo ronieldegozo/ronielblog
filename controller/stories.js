@@ -169,18 +169,43 @@ exports.getEditPost = async (req, res) => {
 }
 
 // update post
-exports.updatePost = async (req, res) => {
+exports.updatePost = (req, res) => {
     const storyId = req.body.storyId;
     const updatedtitle = req.body.title;
     const updatedstatus = req.body.status;
     const updatedcategories = req.body.categories;
-    // const updatedImg = req.file;
+    const image = req.file;
     const updatedbody = req.body.body;
-    
-    console.log(storyId, updatedtitle,updatedstatus, updatedcategories,updatedbody);
+    console.log(image);
+ 
+    Story.findById(storyId)
+    .then(story =>{
+        if(story.user != req.user.id){
+          return res.redirect('/');
+        }
+        story.title= updatedtitle;
+        story.status= updatedstatus;
+        story.categories= updatedcategories;
+        story.body= updatedbody;
+        // const image = image.path; 
+        if(image){
+            story.image= image.path;
+        }
+        // product.description= updatedDesc;
+        return story
+        .save()
+        .then(result => {
+          console.log('UPDATED PRODUCT!');
+          res.redirect('/dashboard');
+        })
+        .catch(err => { //HANDLING EERRORS
+          console.log(err);
+        });
 
+    })
 
-
+    // const updatedbody = req.body.body;
+    // console.log(image);
     // let story = await Story.findById(req.params.id).lean()
 
     // if(!story) {
@@ -199,7 +224,6 @@ exports.updatePost = async (req, res) => {
     //     })
     //     res.redirect('/dashboard');
     // }
-
 }
 
 
