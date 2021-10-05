@@ -3,6 +3,7 @@ const {formatDate, truncate,stripTags,editIcon} = require('../helper/ejs');
 const fs = require('fs');
 const path = require('path');
 const PDFkit = require('pdfkit')
+const fileDelete = require('../util/deleteFile');
 
 
 exports.getStory = async (req, res) => {
@@ -174,7 +175,7 @@ exports.getEditPost = async (req, res) => {
 }
 
 // update post
-exports.updatePost = async (req, res) => {
+exports.updatePost = async (req, res, next) => {
     const storyId = req.body.storyId;
     const updatedtitle = req.body.title;
     const updatedstatus = req.body.status;
@@ -193,6 +194,7 @@ exports.updatePost = async (req, res) => {
         story.categories= updatedcategories;
         story.body= updatedbody;
         if(image){
+            fileDelete.deleteFile(story.image); 
             story.image= image.path;
         }
         return story
@@ -212,20 +214,58 @@ exports.updatePost = async (req, res) => {
 
 
 // Delete post
-exports.deletePost = async (req, res) => {
+exports.deletePost = async (req, res, next) => {
 
     try{
-        await Story.remove({_id: req.params.id})
-        res.redirect('/dashboard');
-    }catch(err) {
-        console.log(err);
+        const prodId = req.params.id;
+        const story = await Story.findById(prodId)
+        if(!story){
+            return next(new Error('No Story Found, Please Upload a new story'));
+        }
+        fileDelete.deleteFile(story.image);
+        return story.deleteOne({_id: req.params.id})
+        .then(result => {
+            console.log('DESTROYED PRODUCT');
+            res.redirect('/dashboard');
+        })
+
+    }catch(err){
         const error = new Error(err); //throwing a 500 page error
         error.httpStatusCode = 500;
         return next(error);
-        // res.render('404', {
-        //     pageTitle: 'Page not Found'
-        // });
     }
+
+    // const prodId = req.params.id;
+    // Story.findById(prodId)
+    // .then((story)=>{
+    //     if(!story){
+    //         return next(new Error('No Story Found, Please Upload a new story'));
+    //     }
+    //     fileDelete.deleteFile(story.image);
+    //     return Story.deleteOne({_id: req.params.id})
+    // })
+    // .then(result => {
+    //     console.log('DESTROYED PRODUCT');
+    //     res.redirect('/dashboard');
+    // })
+    // .catch((err)=>{
+    //     console.log(err);
+    // })
+
+
+
+    // try{
+    //     await Story.remove({_id: req.params.id})
+    //     res.redirect('/dashboard');
+    // }catch(err) {
+    //     console.log(err);
+    //     const error = new Error(err); //throwing a 500 page error
+    //     error.httpStatusCode = 500;
+    //     return next(error);
+    //     // res.render('404', {
+    //     //     pageTitle: 'Page not Found'
+    //     // });
+    // }
 }
 
 
