@@ -3,7 +3,8 @@ const fs = require('fs');
 const deleteFile = (filePath) => {
     fs.unlink(filePath, (err, file) => {
         if(err){
-            throw (err);
+            console.log(err);
+            throw new Error('Database Error');
         }
         
     })
