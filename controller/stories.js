@@ -60,7 +60,9 @@ exports.postStories = async (req, res) => {
         })
 
     }catch(err){
-        console.log(err);
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
     }
 
 
@@ -169,7 +171,7 @@ exports.getEditPost = async (req, res) => {
 }
 
 // update post
-exports.updatePost = (req, res) => {
+exports.updatePost = async (req, res) => {
     const storyId = req.body.storyId;
     const updatedtitle = req.body.title;
     const updatedstatus = req.body.status;
@@ -177,53 +179,32 @@ exports.updatePost = (req, res) => {
     const image = req.file;
     const updatedbody = req.body.body;
     console.log(image);
- 
-    Story.findById(storyId)
-    .then(story =>{
+
+    try{
+        const story = await Story.findById(storyId)
         if(story.user != req.user.id){
-          return res.redirect('/');
+            return res.redirect('/');  
         }
         story.title= updatedtitle;
         story.status= updatedstatus;
         story.categories= updatedcategories;
         story.body= updatedbody;
-        // const image = image.path; 
         if(image){
             story.image= image.path;
         }
-        // product.description= updatedDesc;
         return story
         .save()
         .then(result => {
-          console.log('UPDATED PRODUCT!');
-          res.redirect('/dashboard');
+            console.log('UPDATED PRODUCT!');
+            res.redirect('/dashboard');
         })
-        .catch(err => { //HANDLING EERRORS
-          console.log(err);
-        });
 
-    })
-
-    // const updatedbody = req.body.body;
-    // console.log(image);
-    // let story = await Story.findById(req.params.id).lean()
-
-    // if(!story) {
-    //     return  res.render('404', {
-    //         pageTitle: 'Page not Found'
-    //     });
-    // }
-
-    // // check is the user is the login user
-    // if (story.user != req.user.id) {
-    //     res.redirect('/')
-    // }else{
-    //     story = await Story.findOneAndUpdate({_id: req.params.id}, req.body, {
-    //         new: true,
-    //         runValidators: true
-    //     })
-    //     res.redirect('/dashboard');
-    // }
+    }catch(err){
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
+    }
+ 
 }
 
 
