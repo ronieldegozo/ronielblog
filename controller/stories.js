@@ -217,22 +217,24 @@ exports.updatePost = async (req, res, next) => {
 exports.deletePost = async (req, res, next) => {
 
     try{
-        const prodId = req.params.id;
-        const story = await Story.findById(prodId)
+        const storyId = req.params.id;
+        const story = await Story.findById(storyId)
         if(!story){
             return next(new Error('No Story Found, Please Upload a new story'));
         }
         fileDelete.deleteFile(story.image);
         return story.deleteOne({_id: req.params.id})
         .then(result => {
-            console.log('DESTROYED PRODUCT');
-            res.redirect('/dashboard');
+            res.status(200).json({
+                message: 'Deleted Success'
+            })
+            console.log(result);
         })
 
     }catch(err){
-        const error = new Error(err); //throwing a 500 page error
-        error.httpStatusCode = 500;
-        return next(error);
+        res.status(500).json({
+            message: 'Failed To Delete Story'
+        })
     }
 
     // const prodId = req.params.id;
