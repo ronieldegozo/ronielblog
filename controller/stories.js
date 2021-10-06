@@ -217,25 +217,44 @@ exports.updatePost = async (req, res, next) => {
 exports.deletePost = async (req, res, next) => {
 
     try{
-        const storyId = req.params.id;
-        const story = await Story.findById(storyId)
+        const prodId = req.params.id;
+        const story = await Story.findById(prodId)
         if(!story){
             return next(new Error('No Story Found, Please Upload a new story'));
         }
         fileDelete.deleteFile(story.image);
         return story.deleteOne({_id: req.params.id})
         .then(result => {
-            res.status(200).json({
-                message: 'Deleted Success'
-            })
-            console.log(result);
+            console.log('DESTROYED PRODUCT');
+            res.redirect('/dashboard');
         })
 
     }catch(err){
-        res.status(500).json({
-            message: 'Failed To Delete Story'
-        })
+        const error = new Error(err); //throwing a 500 page error
+        error.httpStatusCode = 500;
+        return next(error);
     }
+
+    // try{
+    //     const storyId = req.params.id;
+    //     const story = await Story.findById(storyId)
+    //     if(!story){
+    //         return next(new Error('No Story Found, Please Upload a new story'));
+    //     }
+    //     fileDelete.deleteFile(story.image);
+    //     return story.deleteOne({_id: req.params.id})
+    //     .then(result => {
+    //         res.status(200).json({
+    //             message: 'Deleted Success'
+    //         })
+    //         console.log(result);
+    //     })
+
+    // }catch(err){
+    //     res.status(500).json({
+    //         message: 'Failed To Delete Story'
+    //     })
+    // }
 
     // const prodId = req.params.id;
     // Story.findById(prodId)
