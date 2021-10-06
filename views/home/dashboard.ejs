@@ -38,12 +38,19 @@
             </form>
           </td>
           <td>
+<<<<<<< HEAD
             <input type="hidden" value="<%= store._id %>" name="id">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <!-- <input type="hidden" name="_method" value="DELETE"> -->
   
             <button class="btn btn-danger" type="button" onclick="deleteStory(this)">Delete</button>
 
+=======
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <!-- <input type="hidden" name="_method" value="DELETE"> -->
+            <input type="hidden" value="<%= store._id %>" name="storyId">
+            <button type="button"onclick="deleteStory(this)" class="btn btn-danger">Delete</button>
+>>>>>>> 7822e17bcf40023cf4d423060795db32d826b059
 
             <!-- <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button> -->
 <!-- Modal for Delete button-->
@@ -91,5 +98,12 @@
   
 </div>
 
+<<<<<<< HEAD
 <%- include('./includes/footer') %>
 <script src="/js/deleteStory.js"></script>
+=======
+
+<%- include('./includes/footer') %>
+
+<script src="/js/deleteStory.js"></script>
+>>>>>>> 7822e17bcf40023cf4d423060795db32d826b059

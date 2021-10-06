@@ -1,4 +1,5 @@
 const deleteStory = (btn) =>{
+<<<<<<< HEAD
     const storyId = btn.parentNode.querySelector('[name=id');
     const csrf = btn.parentNode.querySelector('[name=_csrf]')
     const storyElement = btn.closest('tr'); //
@@ -21,4 +22,8 @@ const deleteStory = (btn) =>{
     .catch((err) =>{
         console.log(err);
     })
+=======
+    const storyId = btn.parentNode.querySelector('[name=storyId');
+    console.log(storyId);
+>>>>>>> 7822e17bcf40023cf4d423060795db32d826b059
 }
