@@ -38,9 +38,14 @@
             </form>
           </td>
           <td>
-            <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <!-- <input type="hidden" name="_method" value="DELETE"> -->
+            <input type="hidden" value="<%= store._id %>" name="storyId">
+            <button type="button"onclick="deleteStory(this)" class="btn btn-danger">Delete</button>
+
+            <!-- <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteModal"><i class="fas fa-trash-alt"></i></button> -->
 <!-- Modal for Delete button-->
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -53,11 +58,12 @@
                       <p>Are you sure do want to delete story?</p>
                   </div>
                   <div class="modal-footer">
-                    <form action="/stories/<%= store._id %>" method="POST">
+
                       <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                      <input type="hidden" name="_method" value="DELETE">
-                      <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                      < <input type="hidden" name="_method" value="DELETE"> -->
+                      <!-- <input type="hidden" value="<%= store._id %>" name="storyId">
+                      <button type="button"onclick="deleteStory(this)" class="btn btn-danger">Delete</button> -->
+
                   </div>
                 </div>
               </div>
@@ -85,3 +91,5 @@
 
 
 <%- include('./includes/footer') %>
+
+<script src="/js/deleteStory.js"></script>
