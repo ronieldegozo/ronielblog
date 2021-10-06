@@ -177,9 +177,22 @@ h1.heading {
         <div class="row mx-0 animate-box" data-animate-effect="fadeInUp">
             <div class="col-12 text-center pb-4 pt-4">
                 <!-- <a href="#" class="btn_mange_pagging"><i class="fa fa-long-arrow-left"></i>&nbsp;&nbsp; Previous</a> -->
-                <a href="/?page=1" class="btn_pagging">1</a>
+                  <% if(currentPage !== 1 && prevPage !==1) { %>
+                      <a href="?page=1"class="btn_pagging">1</a>
+                  <% } %> 
+                  <% if(prevPage) { %>
+                      <a href="?page=<%= prevPage %>" class="btn_pagging"><%= prevPage %></a>
+                  <% } %> 
+                  <a href="?page=<%= currentPage %>" class="active btn_pagging"><%= currentPage %></a>
+                  <% if(hasNextPage) { %>
+                      <a href="?page=<%= nextPage %>" class="btn_pagging"><%= nextPage %></a>
+                  <% } %> 
+                  <% if(lastPage !== currentPage && nextPage !== lastPage) { %>
+                      <a href="?page=<%= lastPage %>" class="btn_pagging"><%= lastPage %></a>
+                  <% } %> 
+                <!-- <a href="/?page=1" class="btn_pagging">1</a>
                 <a href="/?page=2" class="btn_pagging">2</a>
-                <a href="/?page=3" class="btn_pagging">3</a>
+                <a href="/?page=3" class="btn_pagging">3</a> -->
                 <!-- <a href="#" class="btn_mange_pagging">Next <i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp; </a> -->
              </div>
         </div>
