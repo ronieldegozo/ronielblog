@@ -69,20 +69,6 @@ exports.postStories = async (req, res) => {
         return next(error);
     }
 
-
-    // try{
-    //     req.body.user = req.user.id
-    //     await Story.create(req.body)
-    //     res.redirect('/dashboard');
-    // }catch(err) {
-    //     console.log(err);
-    //     const error = new Error(err); //throwing a 500 page error
-    //     error.httpStatusCode = 500;
-    //     return next(error);
-    //     // res.render('404', {
-    //     //     pageTitle: 'Page not Found'
-    //     // });
-    // }
 }
 
 
@@ -234,59 +220,6 @@ exports.deletePost = async (req, res, next) => {
         error.httpStatusCode = 500;
         return next(error);
     }
-
-    // try{
-    //     const storyId = req.params.id;
-    //     const story = await Story.findById(storyId)
-    //     if(!story){
-    //         return next(new Error('No Story Found, Please Upload a new story'));
-    //     }
-    //     fileDelete.deleteFile(story.image);
-    //     return story.deleteOne({_id: req.params.id})
-    //     .then(result => {
-    //         res.status(200).json({
-    //             message: 'Deleted Success'
-    //         })
-    //         console.log(result);
-    //     })
-
-    // }catch(err){
-    //     res.status(500).json({
-    //         message: 'Failed To Delete Story'
-    //     })
-    // }
-
-    // const prodId = req.params.id;
-    // Story.findById(prodId)
-    // .then((story)=>{
-    //     if(!story){
-    //         return next(new Error('No Story Found, Please Upload a new story'));
-    //     }
-    //     fileDelete.deleteFile(story.image);
-    //     return Story.deleteOne({_id: req.params.id})
-    // })
-    // .then(result => {
-    //     console.log('DESTROYED PRODUCT');
-    //     res.redirect('/dashboard');
-    // })
-    // .catch((err)=>{
-    //     console.log(err);
-    // })
-
-
-
-    // try{
-    //     await Story.remove({_id: req.params.id})
-    //     res.redirect('/dashboard');
-    // }catch(err) {
-    //     console.log(err);
-    //     const error = new Error(err); //throwing a 500 page error
-    //     error.httpStatusCode = 500;
-    //     return next(error);
-    //     // res.render('404', {
-    //     //     pageTitle: 'Page not Found'
-    //     // });
-    // }
 }
 
 
